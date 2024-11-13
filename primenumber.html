@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body> <script>
+  // Students write their code between these lines. 
+//
+// Code below this line vvvvv vvvvv vvvvv vvvvv vvvvv
+
+function isPrime(num) {
+    if (num <= 1) return messageFormatter(`${num} is NOT a prime number.`);
+    for (let i = 2; i <= Math.sqrt(num); i++) {
+        if (num % i === 0) return messageFormatter(`${num} is NOT a prime number.`);
+    }
+    return messageFormatter(`${num} is a prime number.`);
+}
+
+function findPrimesInRange(range) {
+    if (!Array.isArray(range) || range.length !== 2 || 
+        typeof range[0] !== 'number' || typeof range[1] !== 'number') {
+        return messageFormatter("Invalid input. Please provide a number or a valid range (array of two numbers).");
+    }
+
+    const [start, end] = range;
+    const primes = [];
+    
+    for (let num = Math.min(start, end); num <= Math.max(start, end); num++) {
+        if (num > 1 && isPrime(num) === `${num} is a prime number.`) {
+            primes.push(num);
+        }
+    }
+    return messageFormatter(`Primes between ${start} and ${end}: [${primes.join(', ')}]`);
+}
+
+function messageFormatter(input) {
+    return input;
+}
+
+// Code above this line ^^^^^ ^^^^^ ^^^^^ ^^^^^ ^^^^^
+
+// Instructor's test cases
+console.log(isPrime(2));
+// Expected Output: 2 is a prime number.
+
+console.log(isPrime(1));
+// Expected Output: 1 is NOT a prime number.
+
+console.log(isPrime(13));
+// Expected Output: 13 is a prime number.
+
+console.log(isPrime(25));
+// Expected Output: 25 is NOT a prime number.
+
+console.log(findPrimesInRange([10, 20]));
+// Expected Output: Primes between 10 and 20: [11, 13, 17, 19]
+
+console.log(findPrimesInRange([30, 50]));
+// Expected Output: Primes between 30 and 50: [31, 37, 41, 43, 47]
+
+console.log(findPrimesInRange('test'));
+// Expected Output: Invalid input. Please provide a number or a valid range (array of two numbers).
+
+</script>
+  
+</body>
+</html>
